@@ -6,7 +6,7 @@ Sie soll dabei helfen den Zusammenhang vom NO2-Immissionen für betroffene Mensc
 https://vizsim.github.io/luftdaten_dtv/luftdaten_dtv_viz.html
 
 ## Webseite-Berlin-beta: 
-https://vizsim.github.io/luftdaten_dtv/map_berlin_14k_station_chart.html 
+https://vizsim.github.io/luftdaten_dtv/map_berlin_14k_station_chart_panel.html 
 
 ## Verwandtes Projekt:
 Luft- und Verkehrsdaten sind für Hamburg für das Jahr 2016 stündlich vorliegend. Besonders interessant ist hierbei die Habichtstraße, weil dort die Luft- und Verkehrsmesstellen dicht ananeinder stehen:
