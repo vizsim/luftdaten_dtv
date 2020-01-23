@@ -37,25 +37,25 @@
                     top: 0.0%;
                					z-index: 1;
                 }
-				.infobox {
-				   position: fixed;
-				   bottom: 30px;
-				   left: 30px;
-				   z-index: 3;
 
-				}
-				
-
-		
-				
+				.panel-default{
+				position: fixed;
+				   bottom: 10px;
+				   left: 10px;
+				    width: 190px;
+					height: 150px;
+					z-index: 3;
+					overflow-y: hidden;				   
+				   }
 				iframe {
 					width: 100%;
 					height: 100%;
+					display: block;
 				}
 				
 				.panel-body {
 					width: 100%;
-					height: 87%; 
+					height: 94%; 
 				}
 				
 				.panel-actions {
@@ -72,14 +72,14 @@
 					display: block;
 					z-index: 9999;
 					position: fixed;
-					width:70%;
-					height:55%;
+					width:90%;
+					height:90%;
 					min-width:500px;
-					max-width:1030px;
-					min-height:300px;
-					bottom: 30px;
-					left: 30px;
-					overflow: auto;
+					min-height:350px;
+					max-width:1020px;
+					max-height:660px;
+					left: 10px;
+					overflow: hidden;
 				}
 				
 
@@ -93,19 +93,20 @@
     
             <div class="folium-map" id="map_6c5ca4e2b43143408b2aebc2e08466b1" ></div>
 			
-			<div class="infobox">
-				<div class="panel panel-default" >
+	
+				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"> Panel </h3>
+						<h3 class="panel-title"> Chart </h3>
 						<ul class="list-inline panel-actions">
 							<li><a href="#" id="panel-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a></li>
 						</ul>
 					</div>
 					<div class="panel-body">
-						<iframe src="chart_v02.html"> </iframe>
+						<img id='img1' src='thumbnail.JPG' style='width: 160px; height: 100px; object-fit: contain;' />
+						<!-- <iframe id="iframe1"> </iframe> -->
 					</div>
 				</div>
-			</div>
+
 </body>
 <script>    
 
@@ -113,11 +114,19 @@ $(document).ready(function () {
     //Toggle fullscreen
     $("#panel-fullscreen").click(function (e) {
         e.preventDefault();
+		
+
+
         
         var $this = $(this);
     
         if ($this.children('i').hasClass('glyphicon-resize-full'))
         {
+			$("#img1").remove();
+			//$("#iframe1").attr("src", "chart_v02.html");
+			$('.panel-body').append("<iframe id='iframe1' src='chart_v02.html' />");
+
+			
             $this.children('i').removeClass('glyphicon-resize-full');
             $this.children('i').addClass('glyphicon-resize-small');
         }
@@ -125,6 +134,9 @@ $(document).ready(function () {
         {
             $this.children('i').removeClass('glyphicon-resize-small');
             $this.children('i').addClass('glyphicon-resize-full');
+			
+			$('.panel-body').append("<img id='img1' src='thumbnail.JPG' style='width: 160px; height: 100px; object-fit: contain;' />");
+			$("#iframe1").remove();
         }
         $(this).closest('.panel').toggleClass('panel-fullscreen');
     });
@@ -136,7 +148,7 @@ $(document).ready(function () {
                 {
                     center: [52.5, 13.4],
                     crs: L.CRS.EPSG3857,
-                    zoom: 11,
+                    zoom: 12,
                     zoomControl: true,
                     preferCanvas: false,
                     name: "CartoDB light",
