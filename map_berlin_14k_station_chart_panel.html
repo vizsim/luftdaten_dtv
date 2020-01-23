@@ -6,7 +6,9 @@
             L_NO_TOUCH = false;
             L_DISABLE_3D = false;
         </script>
-    
+		
+     <title>luftdaten_dtv</title>
+	 
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -34,29 +36,21 @@
                     height: 100.0%;
                     left: 0.0%;
                     top: 0.0%;
-               					z-index: 1;
+               		z-index: 1;
                 }
-
+				
+				/* panel minimiert */  
 				.panel-default{
-				position: fixed;
-				   bottom: 10px;
-				   left: 10px;
+					position: fixed;
+				    bottom: 10px;
+				    left: 10px;
 				    width: 190px;
 					height: 150px;
 					z-index: 3;
 					overflow-y: hidden;				   
 				   }
-				iframe {
-					width: 100%;
-					height: 100%;
-					display: block;
-				}
-				
-				.panel-body {
-					width: 100%;
-					height: 94%; 
-				}
-				
+				   
+				/* panel leiste */  
 				.panel-actions {
 				  margin-top: -20px;
 				  margin-bottom: 0;
@@ -66,6 +60,12 @@
 				.panel-actions a {
 				  color:#333;
 				  z-index: 100;
+				}
+				
+				/* Panel inhalt */  
+				.panel-body {
+					width: 100%;
+					height: 88%; 
 				}
 				.panel-fullscreen {
 					display: block;
@@ -81,6 +81,24 @@
 					overflow: hidden;
 				}
 				
+				/* Tabs */ 
+				.tab-content {
+					width: 100%;
+					height: 100%;
+				}
+				
+				#menu1, #menu2, #home {
+					width: 100%;
+					height: 100%;
+				}
+				
+				iframe {
+					width: 100%;
+					height: 100%;
+				}
+				
+
+				
 
 				
                 
@@ -95,14 +113,65 @@
 	
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"> Chart </h3>
+						<h3 class="panel-title"> Charts </h3>
 						<ul class="list-inline panel-actions">
 							<li><a href="#" id="panel-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a></li>
 						</ul>
 					</div>
-					<div class="panel-body">
-						<img id='img1' src='thumbnail.JPG' style='width: 160px; height: 100px; object-fit: contain;' />
-						<!-- <iframe id="iframe1"> </iframe> -->
+					
+				<div class="panel-body">
+					<div class="thumb">
+						<img id='img1' src='thumbnail.JPG' style='width: 160px; height: 100px; object-fit: contain;' /> 
+					</div>
+					
+					<!--<<h2>Dynamic Tabs</h2>-->
+					<ul class="nav nav-tabs">
+					  <li class="active"><a href="#home">DTV</a></li>
+					  <li><a href="#menu1">Gebietsarten</a></li>
+					  <li><a href="#menu2">Stationsarten</a></li>
+					  <li><a href="#menu3">Quellen</a></li>
+					</ul>
+					
+					<div class="tab-content">
+						<div id="home" class="tab-pane fade in active">
+							<!--<img id='img1' src='thumbnail.JPG' style='width: 160px; height: 100px; object-fit: contain;' /> -->
+						</div>
+						<div id="menu1" class="tab-pane fade">
+						</div>
+						<div id="menu2" class="tab-pane fade">
+						</div>
+						<div id="menu3" class="tab-pane fade">
+						  <h3>Quellen</h3>
+							<br>
+							<h4>Luftdaten</h4>
+							<li>Umweltbundesamt Stationsdaten: <br>
+							<a href="https://www.env-it.de/stationen/public/downloadRequest.do">https://www.env-it.de/stationen/public/downloadRequest.do</a>
+							</li>
+							<li>Umweltbundesamt Luftschadstoffdaten:<br>
+							<a href="https://www.umweltbundesamt.de/daten/luft/luftdaten/jahresbilanzen">https://www.umweltbundesamt.de/daten/luft/luftdaten/jahresbilanzen</a>
+							</li>
+							
+							<br>
+							<h4>Verkehrsdaten</h4>
+							<li>Bayern (WFS): <br>
+							<a href="https://www.baysis.bayern.de/gis/services/wfs/BAYSIS_Verkehrsmengen/MapServer/WFSServer?o">https://www.baysis.bayern.de/gis/services/wfs/BAYSIS_Verkehrsmengen/MapServer/WFSServer?</a>
+							</li>
+							<li>Berlin (WFS):<br>
+							<a href="https://fbinter.stadt-berlin.de/fb/wfs/data/senstadt/wfs_07_01verkmeng2014">https://fbinter.stadt-berlin.de/fb/wfs/data/senstadt/wfs_07_01verkmeng2014</a>
+							</li>
+							<li>Brandenburg (WFS):<br>
+							<a href="https://inspire.brandenburg.de/services/zaehlstellen_wfs?service=WFS&request=GetCapabilities">https://inspire.brandenburg.de/services/zaehlstellen_wfs?service=WFS&request=GetCapabilities</a>
+							</li>
+							<li>Nordrhein Westfalen (ATOM):<br>
+							<a href="http://www.gis-rest.nrw.de/atomFeed/rest/atom/f4affc5e-a01a-4531-895c-5c6e59685ed1.html">http://www.gis-rest.nrw.de/atomFeed/rest/atom/f4affc5e-a01a-4531-895c-5c6e59685ed1.html</a>
+							</li>
+							<li>Niedersachsen (ATOM):<br>
+							<a href="https://map.strassenbau.niedersachsen.de/zip/DE-NI-SBV_Downloadservice_SVZ_Zaehlstellenbereiche_2015.xml">https://map.strassenbau.niedersachsen.de/zip/DE-NI-SBV_Downloadservice_SVZ_Zaehlstellenbereiche_2015.xml</a>
+							</li>
+							<li>Sachsen (ATOM):<br>
+							<a href="http://www.list.smwa.sachsen.de/gdi/download/opensbv-svz.xml">http://www.list.smwa.sachsen.de/gdi/download/opensbv-svz.xml</a>
+							</li>
+						</div>	
 					</div>
 				</div>
 
@@ -134,8 +203,26 @@
         
 </body>
 <script> 
-   
 
+
+//initaliy load
+$('#home').append("<iframe id='iframe1' src='chart_v02.html' />");
+$('#menu1').append("<iframe id='iframe2' src='chart_gebietssart.html' />");
+$('#menu2').append("<iframe id='iframe2' src='chart_stationsart.html' />");
+
+//hide tabs first 
+$( ".nav-tabs" ).hide(); 
+
+//tabs
+$(document).ready(function(){
+  $(".nav-tabs a").click(function(){
+    $(this).tab('show');
+  });
+});
+
+
+
+//max/min panel
 $(document).ready(function () {
     //Toggle fullscreen
     $("#panel-fullscreen").click(function (e) {
@@ -145,24 +232,28 @@ $(document).ready(function () {
 
         
         var $this = $(this);
-    
+		
+		// wenn man das panael MAXIMIERT
         if ($this.children('i').hasClass('glyphicon-resize-full'))
         {
 			$("#img1").remove();
 			//$("#iframe1").attr("src", "chart_v02.html");
-			$('.panel-body').append("<iframe id='iframe1' src='chart_v02.html' />");
+
+			$( ".nav-tabs" ).show(); 
 
 			
             $this.children('i').removeClass('glyphicon-resize-full');
             $this.children('i').addClass('glyphicon-resize-small');
         }
+		// wenn man das panael MINIMIERT
         else if ($this.children('i').hasClass('glyphicon-resize-small'))
         {
             $this.children('i').removeClass('glyphicon-resize-small');
             $this.children('i').addClass('glyphicon-resize-full');
 			
-			$('.panel-body').append("<img id='img1' src='thumbnail.JPG' style='width: 160px; height: 100px; object-fit: contain;' />");
-			$("#iframe1").remove();
+			$('.thumb').append("<img id='img1' src='thumbnail.JPG' style='width: 160px; height: 100px; object-fit: contain;' />");
+			//$("#iframe1").remove();
+			$( ".nav-tabs" ).hide(); 
         }
         $(this).closest('.panel').toggleClass('panel-fullscreen');
     });
@@ -769,6 +860,7 @@ $(document).ready(function () {
                 },
                 click: function(e) {
                     map_035763b5ee804c4bbbbf5276ae892359.fitBounds(e.target.getBounds());
+					/// hier das popup rein
                 }
             });
         };
@@ -830,8 +922,22 @@ $(document).ready(function () {
                  </div>`,
                 {"sticky": true}
             );
+			
+		// neu
+//			
+//		 var popup_276f7974fefb4b3bbb2a00617ed68d9c = L.popup({"maxWidth": "100%"});
+//
+//            var html_e0f1878181b449778f4162a868347fa1 = $(`
+//			<div id="html_e0f1878181b449778f4162a868347fa1" style="width: 100.0%; height: 100.0%;">
+//				test
+//				<img id='img1' src='thumbnail.JPG' style='width: 160px; height: 100px; object-fit: contain;' /> 
+//			</div>`)[0];
+//            popup_276f7974fefb4b3bbb2a00617ed68d9c.setContent(html_e0f1878181b449778f4162a868347fa1);
+//        
+//        marker_df1c9a2e41624efda0dbeaf382b6ef23.bindPopup(popup_276f7974fefb4b3bbb2a00617ed68d9c)
         
-    
+    //
+	
             var marker_24a7749df43444118e839d5d79a1b7fd = L.marker(
                 [52.50645899747089, 13.308589999999997],
                 {"name": "Berlin Kantstra\u00dfe"}
