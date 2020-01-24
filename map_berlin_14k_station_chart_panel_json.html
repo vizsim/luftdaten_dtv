@@ -240,10 +240,10 @@ var opt = { 'padding':{"left": 20, "top": 20, "right": 20, "bottom": 20}}
    
   //var spec = "https://vizsim.github.io/luftdaten_dtv/chart_gebietssart.json";
   
-//  var handler = new vegaTooltip.Handler();
- vegaEmbed('#viz0', 'https://vizsim.github.io/luftdaten_dtv/chart_v02.json' ,opt).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
+////  var handler = new vegaTooltip.Handler();
+// vegaEmbed('#viz0', 'https://vizsim.github.io/luftdaten_dtv/chart_v02.json' ,opt).then(function(result) {
+//    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+//  }).catch(console.error);
   
   
  vegaEmbed('#viz1', 'https://vizsim.github.io/luftdaten_dtv/chart_gebietssart.json' ,opt).then(function(result) {
@@ -259,7 +259,7 @@ var opt = { 'padding':{"left": 20, "top": 20, "right": 20, "bottom": 20}}
   
   
 //initaliy load IFRAMES
-//$('#home').append("<iframe id='iframe1' src='chart_v02.html' />");
+$('#viz0').append("<iframe id='iframe1' src='chart_v02.html' />");
 //$('#menu1').append("<iframe id='iframe2' src='chart_gebietssart.html' />");
 //$('#menu2').append("<iframe id='iframe3' src='chart_stationsart.html' />");
 
