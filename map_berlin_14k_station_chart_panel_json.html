@@ -80,7 +80,7 @@
 					min-width:500px;
 					min-height:350px;
 					max-width:1050px;
-					max-height:730px;
+					max-height:720px;
 					left: 10px;
 					overflow: hidden;
 				}
@@ -96,11 +96,13 @@
 					width: 100%;
 					height: 100%;
 					z-index: 9999;
+					overflow: hidden;
 				}
 				
 				iframe {
 					width: 100%;
 					height: 100%;
+					overflow: hidden;
 				}
 				
 				#vg-tooltip-element {
@@ -108,7 +110,9 @@
 				}
 				
 				.vizz {
-					overflow: auto;
+					overflow: hidden;
+					width: 100%;
+					height: 100%;
 				}
 				
 
@@ -147,8 +151,7 @@
 					<div class="tab-content">
 						<div id="home" class="tab-pane fade in active">
 							<!--<img id='img1' src='thumbnail.JPG' style='width: 160px; height: 100px; object-fit: contain;' /> -->
-							<div id="viz0" class="vizz">
-							</div>
+							
 						</div>
 						<div id="menu1" class="tab-pane fade">
 							<div id="viz1" class="vizz">
@@ -250,7 +253,7 @@ var opt = { 'padding':{"left": 20, "top": 20, "right": 20, "bottom": 20}}
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
   
- vegaEmbed('#viz2', 'https://vizsim.github.io/luftdaten_dtv/chart_gebietssart.json',opt).then(function(result) {
+ vegaEmbed('#viz2', 'https://vizsim.github.io/luftdaten_dtv/chart_stationsart.json',opt).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
   
@@ -259,13 +262,13 @@ var opt = { 'padding':{"left": 20, "top": 20, "right": 20, "bottom": 20}}
   
   
 //initaliy load IFRAMES
-$('#viz0').append("<iframe id='iframe1' src='chart_v02.html' />");
+$('#home').append("<iframe id='iframe1' src='chart_v02.html' />");
 //$('#menu1').append("<iframe id='iframe2' src='chart_gebietssart.html' />");
 //$('#menu2').append("<iframe id='iframe3' src='chart_stationsart.html' />");
 
 //hide tabs first 
 $( ".nav-tabs" ).hide(); 
-$( "#viz0" ).hide(); 
+//$( "#viz0" ).hide(); 
 
 //tabs
 $(document).ready(function(){
@@ -294,7 +297,7 @@ $(document).ready(function () {
 			//$("#iframe1").attr("src", "chart_v02.html");
 
 			$( ".nav-tabs" ).show(); 
-			$( "#viz0" ).show(); 
+			//$( "#viz0" ).show(); 
 
 			
             $this.children('i').removeClass('glyphicon-resize-full');
@@ -308,7 +311,7 @@ $(document).ready(function () {
 			
 			$('.thumb').append("<img id='img1' src='thumbnail.JPG' style='width: 160px; height: 100px; object-fit: contain;' />");
 			//$("#iframe1").remove();
-			$( "#viz0" ).hide(); 
+			//$( "#viz0" ).hide(); 
 			$( ".nav-tabs" ).hide(); 
         }
         $(this).closest('.panel').toggleClass('panel-fullscreen');
