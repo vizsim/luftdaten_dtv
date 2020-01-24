@@ -48,7 +48,7 @@
 				    left: 10px;
 				    width: 190px;
 					height: 150px;
-					z-index: 3;
+					z-index: 50;
 					overflow-y: hidden;				   
 				   }
 				   
@@ -67,18 +67,20 @@
 				/* Panel inhalt */  
 				.panel-body {
 					width: 100%;
-					height: 88%; 
+					height: 88%;
+									
 				}
 				.panel-fullscreen {
+					position: absolute;  
+
 					display: block;
 					z-index: 9998;
-					position: fixed;
-					width:90%;
-					height:90%;
+					width:81%;
+					height:80%;
 					min-width:500px;
 					min-height:350px;
-					max-width:1020px;
-					max-height:660px;
+					max-width:1050px;
+					max-height:730px;
 					left: 10px;
 					overflow: hidden;
 				}
@@ -87,6 +89,7 @@
 				.tab-content {
 					width: 100%;
 					height: 100%;
+					overflow: auto;	
 				}
 				
 				#menu1, #menu2, #home {
@@ -104,7 +107,9 @@
 				z-index: 9999;
 				}
 				
-
+				.vizz {
+					overflow: auto;
+				}
 				
 
 				
@@ -142,13 +147,15 @@
 					<div class="tab-content">
 						<div id="home" class="tab-pane fade in active">
 							<!--<img id='img1' src='thumbnail.JPG' style='width: 160px; height: 100px; object-fit: contain;' /> -->
+							<div id="viz0" class="vizz">
+							</div>
 						</div>
 						<div id="menu1" class="tab-pane fade">
-							<div id="viz1">
+							<div id="viz1" class="vizz">
 							</div>
 						</div>
 						<div id="menu2" class="tab-pane fade">
-							<div id="viz2">
+							<div id="viz2" class="vizz">
 							</div>
 						</div>
 						<div id="menu3" class="tab-pane fade">
@@ -186,21 +193,17 @@
 					</div>
 				</div>
 
-
-    
-<body>    
-    
                 <div style="position: fixed; 
-                            top: 50px; right: 50px; width: 130px; height: 150px; 
-                            z-index:9998; font-size:14px; border-radius: 5px;
+                            top: 60px; right: 10px; width: 130px; height: 150px; 
+                            z-index:-10; font-size:14px; border-radius: 5px;
                             border:2px solid grey;
                             background-color: white; opacity: 0.9;
                             ">
                 </div>
                 
                 <div style="position: fixed; 
-                            top: 50px; right: 50px; width: 130px; height: 150px; padding-top:5px;
-                             z-index:9999; font-size:14px;
+                            top: 60px; right: 10px; width: 130px; height: 150px; padding-top:5px;
+                             z-index:-9; font-size:14px;
                         
                             ">&nbsp;<b> NO2 an <br>
                               &nbsp;    Messstationen  </b> <br>
@@ -208,6 +211,10 @@
                               &nbsp;                         20 - 40 μg &nbsp; <i class="fa fa-map-marker fa-2x" style="color:orange"></i><br>
                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    < 20 μg &nbsp; <i class="fa fa-map-marker fa-2x" style="color:green"></i>
                 </div>
+    
+<body>    
+    
+
                 
     
             <div class="folium-map" id="map_035763b5ee804c4bbbbf5276ae892359" ></div>
@@ -234,7 +241,7 @@ var opt = { 'padding':{"left": 20, "top": 20, "right": 20, "bottom": 20}}
   //var spec = "https://vizsim.github.io/luftdaten_dtv/chart_gebietssart.json";
   
 //  var handler = new vegaTooltip.Handler();
- vegaEmbed('#home', 'https://vizsim.github.io/luftdaten_dtv/chart_v02.json' ,opt).then(function(result) {
+ vegaEmbed('#viz0', 'https://vizsim.github.io/luftdaten_dtv/chart_v02.json' ,opt).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
   
@@ -258,6 +265,7 @@ var opt = { 'padding':{"left": 20, "top": 20, "right": 20, "bottom": 20}}
 
 //hide tabs first 
 $( ".nav-tabs" ).hide(); 
+$( "#viz0" ).hide(); 
 
 //tabs
 $(document).ready(function(){
@@ -286,6 +294,7 @@ $(document).ready(function () {
 			//$("#iframe1").attr("src", "chart_v02.html");
 
 			$( ".nav-tabs" ).show(); 
+			$( "#viz0" ).show(); 
 
 			
             $this.children('i').removeClass('glyphicon-resize-full');
@@ -299,6 +308,7 @@ $(document).ready(function () {
 			
 			$('.thumb').append("<img id='img1' src='thumbnail.JPG' style='width: 160px; height: 100px; object-fit: contain;' />");
 			//$("#iframe1").remove();
+			$( "#viz0" ).hide(); 
 			$( ".nav-tabs" ).hide(); 
         }
         $(this).closest('.panel').toggleClass('panel-fullscreen');
