@@ -13,6 +13,8 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+	
+	
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
@@ -69,7 +71,7 @@
 				}
 				.panel-fullscreen {
 					display: block;
-					z-index: 9999;
+					z-index: 9998;
 					position: fixed;
 					width:90%;
 					height:90%;
@@ -90,11 +92,16 @@
 				#menu1, #menu2, #home {
 					width: 100%;
 					height: 100%;
+					z-index: 9999;
 				}
 				
 				iframe {
 					width: 100%;
 					height: 100%;
+				}
+				
+				#vg-tooltip-element {
+				z-index: 9999;
 				}
 				
 
@@ -137,8 +144,12 @@
 							<!--<img id='img1' src='thumbnail.JPG' style='width: 160px; height: 100px; object-fit: contain;' /> -->
 						</div>
 						<div id="menu1" class="tab-pane fade">
+							<div id="viz1">
+							</div>
 						</div>
 						<div id="menu2" class="tab-pane fade">
+							<div id="viz2">
+							</div>
 						</div>
 						<div id="menu3" class="tab-pane fade">
 						  <h3>Quellen</h3>
@@ -203,9 +214,11 @@
         
 </body>
 
- <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@3"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+
 <script> 
 
 
@@ -213,15 +226,33 @@
   
   
 var opt = { 'padding':{"left": 20, "top": 20, "right": 20, "bottom": 20}}
-  
+   //var spec = "https://raw.githubusercontent.com/vega/vega/master/docs/examples/bar-chart.vg.json";
 
+     // var spec = "https://vizsim.github.io/BerlinTrafficCounts/jsons_trendcharts/plz_trendChart_10365.json";
+
+   
+  //var spec = "https://vizsim.github.io/luftdaten_dtv/chart_gebietssart.json";
   
- vegaEmbed('#iframe2', 'chart_gebietssart.json', opt)
- vegaEmbed('#iframe3', 'chart_stationsart.json', opt)
+//  var handler = new vegaTooltip.Handler();
+ vegaEmbed('#home', 'https://vizsim.github.io/luftdaten_dtv/chart_v02.json' ,opt).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
   
   
-//initaliy load
-$('#home').append("<iframe id='iframe1' src='chart_v02.html' />");
+ vegaEmbed('#viz1', 'https://vizsim.github.io/luftdaten_dtv/chart_gebietssart.json' ,opt).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+ vegaEmbed('#viz2', 'https://vizsim.github.io/luftdaten_dtv/chart_gebietssart.json',opt).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+ //vegaEmbed('#iframe2', 'chart_gebietssart.json', opt)
+ //vegaEmbed('#iframe3', 'chart_stationsart.json', opt)
+  
+  
+//initaliy load IFRAMES
+//$('#home').append("<iframe id='iframe1' src='chart_v02.html' />");
 //$('#menu1').append("<iframe id='iframe2' src='chart_gebietssart.html' />");
 //$('#menu2').append("<iframe id='iframe3' src='chart_stationsart.html' />");
 
